@@ -10,9 +10,9 @@
 
 
 #include "d3d11/main.h"
-#include "sp/main.h"
-#include "sp/main/preferences.h"
-#include "sp/log.h"
+//#include "sp/main.h"
+//#include "sp/main/preferences.h"
+//#include "sp/log.h"
 
 
 namespace dll {
@@ -56,7 +56,7 @@ constexpr const char* build = __DATE__ "   " __TIME__;
 
 inline BOOL on_process_attach(HMODULE h_module, LPVOID lp_reserved)
 {
-    prefs::initialize("d3d11_mod.ini");
+    /*prefs::initialize("d3d11_mod.ini");
 
     if constexpr (SP_DEBUG_BUILD)
     {
@@ -67,7 +67,7 @@ inline BOOL on_process_attach(HMODULE h_module, LPVOID lp_reserved)
 
     SP_LOG("[%s %s] Attached to process.\n",
         sp::str::get_date(sp::util::YYYYMMDD).c_str(),
-        sp::str::get_time().c_str());
+        sp::str::get_time().c_str());*/
 
     d3d11::hook_exports();
 
@@ -81,9 +81,9 @@ inline BOOL on_process_detach(HMODULE h_module, LPVOID lp_reserved)
 {
     WRAPPER_ON_PROCESS_DETACH_GLOBAL_NS(h_module, lp_reserved);
 
-    SP_LOG("[%s %s] Detached from process.\n\n",
+    /*SP_LOG("[%s %s] Detached from process.\n\n",
         sp::str::get_date(sp::util::YYYYMMDD).c_str(),
-        sp::str::get_time().c_str());
+        sp::str::get_time().c_str());*/
 
     return BOOL(!!FreeLibrary(d3d11::chain));
 }
